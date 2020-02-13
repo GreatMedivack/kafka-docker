@@ -1,6 +1,9 @@
 #!/bin/bash -e
 
-rm "/kafka/kafka-logs-$HOSTNAME/meta.properties"
+META_PROPERTIES_FILE="/kafka/kafka-logs-$HOSTNAME/meta.properties"
+if [[ -f "$META_PROPERTIES_FILE" ]]; then
+    rm "$META_PROPERTIES_FILE"
+fi
 
 # Allow specific kafka versions to perform any unique bootstrap operations
 OVERRIDE_FILE="/opt/overrides/${KAFKA_VERSION}.sh"
